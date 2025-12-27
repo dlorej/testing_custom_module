@@ -3,15 +3,128 @@ package expo.modules.cctv
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import java.net.URL
+import android.Manifest
+import android.content.ContentValues
+import android.content.pm.PackageManager
+import android.os.Build
+import android.os.Bundle
+import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.ImageCapture
+import androidx.camera.video.Recorder
+import androidx.camera.video.Recording
+import androidx.camera.video.VideoCapture
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.android.example.cameraxapp.databinding.ActivityMainBinding
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.core.Preview
+import androidx.camera.core.CameraSelector
+import android.util.Log
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.ImageProxy
+import androidx.camera.video.FallbackStrategy
+import androidx.camera.video.MediaStoreOutputOptions
+import androidx.camera.video.Quality
+import androidx.camera.video.QualitySelector
+import androidx.camera.video.VideoRecordEvent
+import androidx.core.content.PermissionChecker
+import java.nio.ByteBuffer
+import java.text.SimpleDateFormat
+import java.util.Locale
+
+typealias LumaListener = (luma: Double) -> Unit
 
 class cctvModule : Module() {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
-  override fun definition() = ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('cctv')` in JavaScript.
-    Name("cctv")
-  }
+
+    private lateinit var viewBinding: ActivityMainBinding
+
+    private var imageCapture: ImageCapture? = null
+
+    private var videoCapture: VideoCapture<Recorder>? = null
+    private var recording: Recording? = null
+
+    private lateinit var cameraExecutor: ExecutorService
+
+    // Each module class must implement the definition function. The definition consists of components
+    // that describes the module's functionality and behavior.
+    // See https://docs.expo.dev/modules/module-api for more details about available components.
+    override fun definition() = ModuleDefinition {
+        // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
+        // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
+        // The module will be accessible from `requireNativeModule('cctv')` in JavaScript.
+        Name("cctv")
+
+        super.onCreate(savedInstanceState)
+            viewBinding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(viewBinding.root)
+
+            // Request camera permissions
+            if (allPermissionsGranted()) {
+                startCamera()
+            } else {
+                requestPermissions()
+            }
+
+            // Set up the listeners for take photo and video capture buttons
+            viewBinding.imageCaptureButton.setOnClickListener { takePhoto() }
+            viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
+
+            cameraExecutor = Executors.newSingleThreadExecutor()
+    }
+    private fun takePhoto() {}
+
+    private fun captureVideo() {}
+
+    private fun startCamera() {}
+
+    private fun requestPermissions() {}
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private val activityResultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions())
+        { permissions ->
+            // Handle Permission granted/rejected
+            var permissionGranted = true
+            permissions.entries.forEach {
+                if (it.key in REQUIRED_PERMISSIONS && it.value == false)
+                    permissionGranted = false
+            }
+            if (!permissionGranted) {
+                Toast.makeText(baseContext,
+                    "Permission request denied",
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                startCamera()
+            }
+        }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
+    }
+
+    companion object {
+        private const val TAG = "CameraXApp"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private val REQUIRED_PERMISSIONS =
+            mutableListOf (
+                Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO
+            ).apply {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                    add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+            }.toTypedArray()
+    }
 }

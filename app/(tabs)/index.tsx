@@ -1,5 +1,5 @@
 import { StyleSheet, Text } from 'react-native';
-
+// import cctvModule from "@/modules/cctv"
 
 export default function HomeScreen() {
   return (

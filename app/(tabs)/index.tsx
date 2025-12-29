@@ -1,10 +1,13 @@
+import { cctvView } from '@/modules/cctv';
+// import cctvModule from "@/modules/cctv";
 import { StyleSheet, Text } from 'react-native';
-// import cctvModule from "@/modules/cctv"
 
 export default function HomeScreen() {
   return (
     <>
       <Text style={{"color":"black"}}>hello</Text>
+      {/* <Text>{cctvModule.PI}</Text> */}
+      <cctvView style={} onImageTaken={()=>{}}/>
     </>
   );
 }

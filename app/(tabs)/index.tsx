@@ -7,7 +7,7 @@ export default function HomeScreen() {
     <>
       <Text style={{"color":"black"}}>hello</Text>
       {/* <Text>{cctvModule.PI}</Text> */}
-      <cctvView style={} onImageTaken={()=>{}}/>
+      <cctvView style={[]} onImageTaken={()=>{}}/>
     </>
   );
 }

@@ -1,0 +1,35 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:2:1-14:12
+INJECTED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:2:1-14:12
+	package
+		ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:4:5-32
+		INJECTED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:3:5-63
+uses-feature#android.hardware.camera.any
+ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:6:5-64
+	android:name
+		ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:6:19-61
+uses-permission#android.permission.CAMERA
+ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:8:5-65
+	android:name
+		ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:8:22-62
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:9:5-71
+	android:name
+		ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:9:22-68
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:10:5-12:38
+	android:maxSdkVersion
+		ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:12:9-35
+	android:name
+		ADDED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:11:9-65
+uses-sdk
+INJECTED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml
+INJECTED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml

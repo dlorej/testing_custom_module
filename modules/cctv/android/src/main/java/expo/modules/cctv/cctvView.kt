@@ -1,60 +1,60 @@
 package expo.modules.cctv
 
-import android.content.Context
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import expo.modules.kotlin.AppContext
-import expo.modules.kotlin.viewevent.EventDispatcher
-import expo.modules.kotlin.views.ExpoView
-import android.Manifest
-import android.content.ContentValues
-import android.content.pm.PackageManager
-import android.os.Build
-import android.os.Bundle
-import android.provider.MediaStore
-import androidx.camera.extensions
-import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.ImageCapture
-import androidx.camera.video.Recorder
-import androidx.camera.video.Recording
-import androidx.camera.video.VideoCapture
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.android.example.cameraxapp.databinding.ActivityMainBinding
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.core.Preview
-import androidx.camera.core.CameraSelector
-import android.util.Log
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.ImageProxy
-import androidx.camera.core.ResolutionSelector
-import androidx.camera.video.FallbackStrategy
-import androidx.camera.video.MediaStoreOutputOptions
-import androidx.camera.video.Quality
-import androidx.camera.video.QualitySelector
-import androidx.camera.video.VideoRecordEvent
-import androidx.core.content.PermissionChecker
-import android.annotation.SuppressLint
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
-import androidx.camera.core.AspectRatio
-import androidx.camera.core.Camera
-import androidx.camera.core.resolutionselector.AspectRatioStrategy
-import androidx.camera.core.resolutionselector.ResolutionSelector
-import androidx.camera.extensions.ExtensionMode
-import androidx.camera.extensions.ExtensionsManager
-import androidx.camera.view.PreviewView
-import java.nio.ByteBuffer
-import java.text.SimpleDateFormat
-import java.util.Locale
+// import android.content.Context
+// import android.webkit.WebView
+// import android.webkit.WebViewClient
+// import expo.modules.kotlin.AppContext
+// import expo.modules.kotlin.viewevent.EventDispatcher
+// import expo.modules.kotlin.views.ExpoView
+// import android.Manifest
+// import android.content.ContentValues
+// import android.content.pm.PackageManager
+// import android.os.Build
+// import android.os.Bundle
+// import android.provider.MediaStore
+// import androidx.camera.extensions
+// // import androidx.appcompat.app.AppCompatActivity
+// import androidx.camera.core.ImageCapture
+// import androidx.camera.video.Recorder
+// import androidx.camera.video.Recording
+// import androidx.camera.video.VideoCapture
+// import androidx.core.app.ActivityCompat
+// import androidx.core.content.ContextCompat
+// // import com.android.example.cameraxapp.databinding.ActivityMainBinding
+// import java.util.concurrent.ExecutorService
+// import java.util.concurrent.Executors
+// import android.widget.Toast
+// import androidx.activity.result.contract.ActivityResultContracts
+// import androidx.camera.lifecycle.ProcessCameraProvider
+// import androidx.camera.core.Preview
+// import androidx.camera.core.CameraSelector
+// import android.util.Log
+// import androidx.camera.core.ImageAnalysis
+// import androidx.camera.core.ImageCaptureException
+// import androidx.camera.core.ImageProxy
+// import androidx.camera.core.ResolutionSelector
+// import androidx.camera.video.FallbackStrategy
+// import androidx.camera.video.MediaStoreOutputOptions
+// import androidx.camera.video.Quality
+// import androidx.camera.video.QualitySelector
+// import androidx.camera.video.VideoRecordEvent
+// import androidx.core.content.PermissionChecker
+// import android.annotation.SuppressLint
+// import android.view.Gravity
+// import android.view.View
+// import android.view.ViewGroup
+// import android.widget.Button
+// import android.widget.FrameLayout
+// import androidx.camera.core.AspectRatio
+// import androidx.camera.core.Camera
+// import androidx.camera.core.resolutionselector.AspectRatioStrategy
+// import androidx.camera.core.resolutionselector.ResolutionSelector
+// import androidx.camera.extensions.ExtensionMode
+// import androidx.camera.extensions.ExtensionsManager
+// import androidx.camera.view.PreviewView
+// import java.nio.ByteBuffer
+// import java.text.SimpleDateFormat
+// import java.util.Locale
 
 class cctvView(context: Context, appContext: AppContext) : ExpoView(context, appContext) {
     // Creates and initializes an event dispatcher for the `onLoad` event.
@@ -275,7 +275,7 @@ class cctvView(context: Context, appContext: AppContext) : ExpoView(context, app
                             activity as AppCompatActivity, cameraSelector, preview, imageCapture
                         )
                     } catch (exc: Exception) {
-                        Log.e(Tage, "Use case binding failed", exc)
+                        Log.e(Tag, "Use case binding failed", exc)
                     }
                 }
             }, ContextCompat.getMainExecutor(context))

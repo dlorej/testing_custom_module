@@ -1,0 +1,24 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="expo.modules.cctv" >
+4
+5    <uses-sdk android:minSdkVersion="24" />
+6
+7    <uses-feature android:name="android.hardware.camera.any" />
+7-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:6:5-64
+7-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:6:19-61
+8
+9    <uses-permission android:name="android.permission.CAMERA" />
+9-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:8:5-65
+9-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:8:22-62
+10    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+10-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:9:5-71
+10-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:9:22-68
+11    <uses-permission
+11-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:10:5-12:38
+12        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+12-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:11:9-65
+13        android:maxSdkVersion="28" />
+13-->/home/jerol/testing_custom_module/modules/cctv/android/src/main/AndroidManifest.xml:12:9-35
+14
+15</manifest>

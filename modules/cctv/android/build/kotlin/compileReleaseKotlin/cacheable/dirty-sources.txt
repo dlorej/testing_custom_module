@@ -1,0 +1,2 @@
+/home/jerol/testing_custom_module/modules/cctv/android/src/main/java/expo/modules/cctv/cctvModule.kt
+/home/jerol/testing_custom_module/modules/cctv/android/src/main/java/expo/modules/cctv/cctvView.kt
